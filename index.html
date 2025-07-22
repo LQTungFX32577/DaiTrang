@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAPPY BIRTHDAY TRANG 🦁</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Quicksand', sans-serif;
+      }
+      body {
+        background: linear-gradient(to top, #fff6e5, #ffd9da);
+        color: #ff9b25;
+        text-align: center;
+        overflow-x: hidden;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-top: 2rem;
+      }
+      .content {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+        line-height: 2;
+      }
+      .cake {
+        width: 120px;
+        cursor: pointer;
+        margin: 2rem auto;
+        font-size: 5rem;
+        animation: float 3s ease-in-out infinite;
+      }
+      .popup,
+      .hidden-message {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+      }
+      .popup p,
+      .hidden-message p {
+        font-size: 1.2rem;
+        color: #ff6f61;
+      }
+      .overlay,
+      .blackout {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 5;
+      }
+      .blackout {
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 100;
+      }
+      .btn-secret {
+        background: #ff9b25;
+        color: white;
+        padding: 0.8rem 1.2rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 1.5rem;
+      }
+      .bubbles {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 0;
+      }
+      .bubbles span {
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 200, 150, 0.6);
+        border-radius: 50%;
+        animation: rise 10s linear infinite;
+      }
+      @keyframes rise {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh);
+          opacity: 0;
+        }
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎉 HAPPY BIRTHDAY ĐÀI TRANG 🦁✨</h1>
+
+    <div class="content">
+      <p>Chúc em sinh nhật vui vẻ:</p>
+      <p>💛 Cười nhiều như emoji của em 😄</p>
+      <p>🧘‍♀️ Tâm luôn an lành</p>
+      <p>🧋 Deadline luôn nhẹ nhàng</p>
+      <p>💬 Và luôn có người nhớ đến em… đúng lúc 😌</p>
+    </div>
+
+    <div class="cake" onclick="triggerWish()" title="Click để ước nhé">🎂</div>
+
+    <button
+      id="no-gift"
+      style="
+        position: relative;
+        margin-top: 1rem;
+        padding: 0.7rem 1.2rem;
+        font-size: 1rem;
+        background: transparent;
+        color: #ff6f61;
+        border: 2px solid #ff6f61;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      "
+    >
+      😅 Không nhận quà đâu
+    </button>
+    <div class="overlay" onclick="closePopup()"></div>
+    <button class="btn-secret" onclick="showHiddenMessage()">
+      🎁 Mở quà !
+    </button>
+    <p style="margin-top: 1rem; color: #d87093">
+      Sản phẩm được tạo bởi coder Tùng Hói nếu có bất kì lỗi nào vui lòng liên
+      hệ ngay để được xử lý nhé. Xin cảm ơn! 🧑‍💻
+    </p>
+
+    <div class="overlay" onclick="closePopup()"></div>
+    <div class="blackout" id="blackout"></div>
+
+    <div class="popup" id="wish-popup">
+      <p>
+        🎂 Chúc Trang tuổi mới nhiều điều tuyệt vời, mọi ước mơ đều thành hiện
+        thực nhé! 🌟
+      </p>
+    </div>
+    <div
+      class="popup hidden-message"
+      id="hidden-popup"
+      style="
+        max-width: 340px;
+        background: #fff9f5;
+        border: 2px dashed #ff9b25;
+        padding: 2rem 1.5rem;
+        text-align: center;
+      "
+    >
+      <h3 style="color: #ff6f61; font-size: 1.4rem; margin-bottom: 0.5rem">
+        🎁VOUCHER SINH NHẬT
+      </h3>
+      <p style="color: #444; font-size: 1rem; line-height: 1.6">
+        1 ly trà sữa size XL<br />
+        Dùng tại tất cả thương hiệu lớn:<br />
+        GongCha, KOI, Phúc Long,...<br /><br />
+        <strong>Hạn dùng:</strong> Đến sinh nhật năm sau! 😄
+      </p>
+    </div>
+
+    <audio autoplay loop>
+      <source
+        src="https://cdn.pixabay.com/audio/2022/03/08/audio_1c3205a6db.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <div class="bubbles">
+      <span style="left: 10%; animation-delay: 0s"></span>
+      <span style="left: 30%; animation-delay: 2s"></span>
+      <span style="left: 50%; animation-delay: 4s"></span>
+      <span style="left: 70%; animation-delay: 1s"></span>
+      <span style="left: 90%; animation-delay: 3s"></span>
+    </div>
+
+    <script>
+      function showPopup() {
+        document.getElementById('wish-popup').style.display = 'block';
+        document.querySelector('.overlay').style.display = 'block';
+      }
+      function showHiddenMessage() {
+        document.getElementById('hidden-popup').style.display = 'block';
+        document.querySelector('.overlay').style.display = 'block';
+      }
+      function closePopup() {
+        document.getElementById('wish-popup').style.display = 'none';
+        document.getElementById('hidden-popup').style.display = 'none';
+        document.querySelector('.overlay').style.display = 'none';
+      }
+
+      function triggerWish() {
+        const blackout = document.getElementById('blackout');
+        blackout.style.display = 'block';
+
+        setTimeout(() => {
+          blackout.style.display = 'none';
+          launchFireworks();
+        }, 2000);
+      }
+
+      function launchFireworks() {
+        const script = document.createElement('script');
+        script.src =
+          'https://cdn.jsdelivr.net/npm/fireworks-js@2.1.0/dist/index.umd.min.js';
+        script.onload = () => {
+          const container = document.createElement('div');
+          container.style.position = 'fixed';
+          container.style.top = '0';
+          container.style.left = '0';
+          container.style.width = '100%';
+          container.style.height = '100%';
+          container.style.zIndex = '200';
+          document.body.appendChild(container);
+
+          const fireworks = new Fireworks.default(container, {
+            autoresize: true,
+            opacity: 0.9,
+            acceleration: 1.05,
+            friction: 0.98,
+            gravity: 1.5,
+            particles: 80,
+            trace: 3,
+            explosion: 5,
+            intensity: 30,
+            flickering: 30,
+            lineStyle: 'round',
+            hue: { min: 0, max: 360 },
+            delay: { min: 15, max: 30 },
+            brightness: { min: 50, max: 80 },
+            decay: { min: 0.015, max: 0.03 },
+          });
+          fireworks.start();
+
+          setTimeout(() => {
+            fireworks.stop();
+            container.remove();
+          }, 5000);
+        };
+        document.body.appendChild(script);
+      }
+      const noGiftBtn = document.getElementById('no-gift');
+      noGiftBtn.addEventListener('mouseenter', () => {
+        const maxX = window.innerWidth - noGiftBtn.offsetWidth;
+        const maxY = window.innerHeight - noGiftBtn.offsetHeight;
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+        noGiftBtn.style.position = 'absolute';
+        noGiftBtn.style.left = `${randomX}px`;
+        noGiftBtn.style.top = `${randomY}px`;
+      });
+    </script>
+  </body>
+</html>
